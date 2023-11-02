@@ -1,0 +1,22 @@
+function text_fitting(width, height, text):
+    words = split(text) // Split the text into individual words
+    fits = 1
+    current_width = 0
+    for word in words:
+        word_length = length(word) // get length of the word
+        if current_width = 0:
+            current_width += word_length
+        else:
+            current_width += word_length + 1 // Accounting for the space
+        if current_width > width:
+            lines += 1
+            current_width = word_length
+        if lines > height:
+            break
+
+    return lines
+
+
+cin width, height, and text. 
+split text into words
+make permutations of how each line can look(theres only a finite set.)

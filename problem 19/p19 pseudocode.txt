@@ -1,0 +1,128 @@
+Modified P19 Psuedocode:
+
+
+***BEFORE STARTING TO PROGRAM, PLEASE TAKE THE TIME TO UNDERSTAND MERGESORT***
+like seriously, go look at some mergesort code so the merge() function becomes easy to understand and program.
+This program takes 3 functions outside the main, 2 for the mergeSort (merge() and mergeSort()) and one helper function.
+I'll use global variables for the sake of psuedocode, but I **HIGHLY RECOMMEND** you try and make them parameters that are 
+passed in merge() and mergeSort() as it is more practical in real scenarios.
+
+int robertPoints // These are the global vars that hold our output
+int rachelPoints
+
+int helper(subArray1, subArray2) // subArray1 should always be a left subarray and subArray2 should always br a right subarray.
+    Make 3 ints:
+	- one to hold an index 
+	- one to hold a temp score 
+	- one to hold a final score. Start all of these at 0.
+    while index is less than the size of subArray2
+        while "temp score" is less than array1 size AND array2[index] is more than array1[tempScore]
+            increment "temp score" by one
+        add temp score to the final score
+        increment the index
+    return the final score
+
+void merge(&robertArray, &rachelArray, left, mid, right)
+
+    *This function is VERY similar to mergeSort, 
+    * I recommend writing a basic merge function first, then adding the necessities for the second array.
+
+    find midpoint of left subarray of both rachel and robert arrays.
+    find midpoint of right subarray
+
+    create 4 subArrays (left & right subarray for Robert and left & right for rachel)
+
+    copy the data to each subarray (same as usual, use two for loops, one for the two left subarrays and one for the rights)
+
+    * This is where knowing normal MergeSort helps in understanding
+    create index values (i, j) for both robert and rachel:
+	- I index for Robert
+	- I index for Rachel
+	- J index for Robert
+	- J index for Rachel // Set all of these to 0.
+     
+     Now make two more ints (one rob, one rachel), this will serve as our index values for the merged array.
+     Set the value of these two to the int parameter "left" 
+    
+    if (i_indexRobert < leftSubArraySize And j_indexRobert < rightsubSize) // this is so it only runs before we merge
+        add helper(leftRachelSubarray, rightRobertsubarray) to robertPoints
+    Repeat this if for rachelPoints, you'll be changing the indicies and left/right subarrays accordingly
+
+    From here on, the function performs like a traditional Merge function
+    Left robert and Right robert will merge back into robertArray and vice versa.
+    After the merging, you copy the remaining values back into the original arrays.
+    **AGAIN, LOOK AT NORMAL MERGE SORT CODE**
+
+
+void mergeSort(array1, array2, left, right) // this function is the EXACT same as its original, just add the second array2 as a parameter and you're set.
+! chatgpt mergesort based on the above code
+void merge(vector<int> &robertArray, vector<int> &rachelArray, int left, int mid, int right) {
+    int leftSubArraySize = mid - left + 1; // Size of the left subarray for Robert
+    int rightSubArraySize = right - mid;   // Size of the right subarray for Robert
+    int leftSubArrayMid = mid - left + 1; // Size of the left subarray for Robert
+    int leftSubArrayMid = mid - left + 1; // Size of the left subarray for Robert
+    // Create subarrays for Robert and Rachel
+    vector<int> leftRobertSubarray(leftSubArraySize);
+    vector<int> rightRobertSubarray(rightSubArraySize);
+    vector<int> leftRachelSubarray(leftSubArraySize);
+    vector<int> rightRachelSubarray(rightSubArraySize);
+    // Copy data to subarrays
+    for (int i = 0; i < leftSubArraySize; i++) {
+        leftRobertSubarray[i] = robertArray[left + i];
+        leftRachelSubarray[i] = rachelArray[left + i];
+    }
+    for (int i = 0; i < rightSubArraySize; i++) {
+        rightRobertSubarray[i] = robertArray[mid + 1 + i];
+        rightRachelSubarray[i] = rachelArray[mid + 1 + i];
+    }
+    int i_indexRobert = 0; // I index for Robert
+    int j_indexRobert = 0; // J index for Robert
+    int i_indexRachel = 0; // I index for Rachel
+    int j_indexRachel = 0; // J index for Rachel
+    int robertIndex = left;   // Index for the merged Robert array
+    int rachelIndex = left;   // Index for the merged Rachel array
+    while (i_indexRobert < leftSubArraySize && j_indexRobert < rightSubArraySize) {
+        // Compare and merge Robert subarrays
+        if (leftRobertSubarray[i_indexRobert] <= rightRobertSubarray[j_indexRobert]) {
+            robertArray[robertIndex] = leftRobertSubarray[i_indexRobert];
+            i_indexRobert++;
+        } else {
+            robertArray[robertIndex] = rightRobertSubarray[j_indexRobert];
+            j_indexRobert++;
+        }
+        // Compare and merge Rachel subarrays
+        if (leftRachelSubarray[i_indexRachel] <= rightRachelSubarray[j_indexRachel]) {
+            rachelArray[rachelIndex] = leftRachelSubarray[i_indexRachel];
+            i_indexRachel++;
+        } else {
+            rachelArray[rachelIndex] = rightRachelSubarray[j_indexRachel];
+            j_indexRachel++;
+        }
+        robertIndex++;
+        rachelIndex++;
+    }
+    // Copy any remaining elements from Robert subarrays
+    while (i_indexRobert < leftSubArraySize) {
+        robertArray[robertIndex] = leftRobertSubarray[i_indexRobert];
+        rachelArray[rachelIndex] = leftRachelSubarray[i_indexRobert];
+        i_indexRobert++;
+        robertIndex++;
+        rachelIndex++;
+    }
+    // Copy any remaining elements from Rachel subarrays
+    while (j_indexRachel < rightSubArraySize) {
+        robertArray[robertIndex] = rightRobertSubarray[j_indexRachel];
+        rachelArray[rachelIndex] = rightRachelSubarray[j_indexRachel];
+        j_indexRachel++;
+        robertIndex++;
+        rachelIndex++;
+    }
+}
+
+int main()
+    make two arrays, one for robert and one for rachel.
+    fill arrays with stdin (this should be obvious)
+
+    call mergeSort with both arrays and left/right values
+
+    output robertPoints and rachelPoints
