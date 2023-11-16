@@ -1,21 +1,29 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
-#include <fstream>
-#include <sstream>
 #include <vector>
 using namespace std;
 
 /*
-dfs(n, i, j, matrix, , visited)
+dfs(n, i, j, matrix)
      if(matrix(i)(j) == 1 and visited(i)(j)=F and i,j are in range[0,n))
-          set visited[i][j] to true
-          left = max(0,j-1); dfs (n,i,left, matrix, visited)
-          right = min(n,j+1); dfs (n,i,right, matrix, visited)
-          down = max(0,i-1); dfs (n,down,j, matrix, visited)
-          up = min(n,i+1); dfs (n,up,j, matrix, visited)
+          set matrix[i][j] to -1, signifying its been visited
+          left = max(0,j-1); dfs (n,i,left, matrix)
+          right = min(n,j+1); dfs (n,i,right, matrix)
+          down = max(0,i-1); dfs (n,down,j, matrix)
+          up = min(n,i+1); dfs (n,up,j, matrix)
      return
 */
+void dfs(int& n, int i, int j,  vector<vector<int>>& matrix){
+     if(i >= 0 && i < n && j >= 0 && j < n) //if in bounds.
+          if(matrix[i][j] == 1){
+               matrix[i][j] = -1;
+               int left = max(0,j-1);  dfs(n , i, left, matrix); //recursively mark all the points in the island.
+               int right = min(n,j+1); dfs(n , i, right, matrix);
+               int down = max(0,i-1);  dfs(n , down, j, matrix);
+               int up = min(n,i+1);    dfs(n , up, j, matrix);
+          }
+     return; //here just in case
+}
 /*
 main()
      input values:
@@ -31,16 +39,21 @@ int main(){
      int n, islands = 0;
      cin >> n;
      string input = "";
-     vector<vector<bool>> visited(n, vector<bool>(n));
-     vector<vector<int>> matrix(n, vector<int>(n));//create a matrix of size n. 
-     for(auto row : visited){//set each cell to false. 
-          for(auto cell : row){   cell = false;   }
-     }
+     vector<vector<int>> matrix(n, vector<int>(n));//create a matrix of size n.
      for (int i = 0; i < n; i++) {
           for (int j = 0; j < n; j++) {
                cin >> matrix[i][j]; //input all the values
           }
      }
-     
+     for(int i=0; i<matrix.size(); i++){ //in i rows
+          for(int j=0; j < matrix[0].size(); j++){ //in j columns
+               if(matrix[i][j] == 1){ //we use -1 to signify visited, 0 for water, 1 for land. 
+                    //i.e if the cell is land and is not visited. 
+                    dfs(n, i, j, matrix); //run dfs on the new found island.
+                    islands++; //increment counter.
+               }
+          }
+     }
+     cout << islands; //print answer.
      return 0;
 }
