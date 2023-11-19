@@ -1,0 +1,9 @@
+list of indices: 1 2 
+new configuration:3 2 3 
+found a new result:3
+new configuration:3 3 2 
+new configuration:2 3 3 
+new configuration:2 3 3 
+new configuration:3 2 3 
+new configuration:3 3 2 
+3

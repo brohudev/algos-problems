@@ -1,9 +1,10 @@
 ## warning:
 I only started to keep a log of my assignments late into the semester, when only 3 more p sets were remaining. 
 
-This means the devlog is incomplete. this will also be reflected in the commits as well. 
+This means the devlog is **incomplete**. this will also be reflected in the commits as well. 
 
-However,
+However (*\*insert meme gif*), 
+
 enjoy the log for the problems that DO exist :D
 
 # Problem Set 10
@@ -21,14 +22,19 @@ Due: Sunday 11/19/23
 	2. try to fix it, as I have all the test cases. 
 - i shall wor on option 2 on thursday...
 
-#### 11/16 Thursday
-- 
 
 ---
 ## Problem 26
 #### 11/16 Thursday
 - I ahve neglected this problem up till now 
 
+#### 11/19 Sunday
+##### 1pm update:
+- The procrastination cycles are too strong, but i must return to the problem once again if i want to keep my grades afloat
+- the plan for today is to make sure i have the codeto input and output the graph, then work on whatever first searc that i have in pseudocode somewhere on my phone, and then jank it all together.
+##### 4pm update:
+- so i spent two hours trying to implement the pseudocode itself and realized that debugging this will push the correct implementation waay beyond the deadline. ive just accepted my fate atp. 
+the new plan is to submit an alternate submission for p3 to salvage enough opints and get started ahead on this weeks problems. matter of fact i will make the first commit for that shortly after finishing up on the alternate submission commit. 
 ---
 ---
 

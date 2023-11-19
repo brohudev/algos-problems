@@ -6,7 +6,7 @@
 #include <vector>
 #include <climits>
 using namespace std;
-int sum(const vector<int>& array, int i, int j) { // little helper function
+int sum(const vector<int>& array, int i, int j) { // helper function
     int sum = 0;
     if(j == i+1) // base case
         return array[i];
@@ -35,6 +35,11 @@ vector<int> getIndices(vector<int> array, int n, int k){
 void backtrack(std::vector<int>& nums, vector<int>&currCombination, int index, int& result, int groups, vector<int> indices) {
     if(index >= nums.size()){
         int maxSubarray = INT_MIN;
+        // cout << "new configuration:";
+        // for(auto num : nums){
+        //     cout << num<< " ";
+        // }cout << "\n";
+
         for (int i = 0; i < indices.size(); i++) {
             int startIndex = (i == 0) ? 0 : (indices[i - 1]); // set the starting index
             int endIndex = indices[i]; //set the ending index.
@@ -43,6 +48,7 @@ void backtrack(std::vector<int>& nums, vector<int>&currCombination, int index, i
                 maxSubarray = temp; //run the normal maxsubarray operation to find the max.
         }
         if(maxSubarray < result){
+            // cout << "found a new result:"<<maxSubarray<<"\n";
             result = maxSubarray;//if the max is lower than some other configuration,
                                 // then we found a set of groups with a more "equalized" max.
                                 //i.e this condition ensures we find the max st the sums across all subgroups are minimized.
@@ -53,12 +59,6 @@ void backtrack(std::vector<int>& nums, vector<int>&currCombination, int index, i
             swap(nums[index], nums[j]); //swap the ith index with jth index.
             backtrack(nums, currCombination, index + 1, result, groups, indices); //backtrack on the combination.
             swap(nums[index], nums[j]);//swap it back. 
-            
-            // int tempnum = nums.at(nums.front()+i); 
-            // nums.erase(nums.begin()+i); //pop it so it doesnt interfere in recursion.
-            // currCombination.push_back(tempnum); //add current element to combinations
-            // backtrack(nums, currCombination, i + 1, result, groups, indices); //recursively generate combinations
-            // nums.insert(nums.begin()+i,tempnum); //undo to try the next combination
         }
     }
 }
@@ -73,15 +73,20 @@ int main(){
      }
     result = sum(array,0,array.size()-1); //set the result to the starting postion
     indices = getIndices(array, size, groups);
+    // cout<<"list of indices: ";
+    // for(auto num : indices){
+    //     cout << num<< " ";
+    // }cout << "\n";
+
     vector<int> currCombination = {};
     backtrack(array, currCombination, 0, result, groups, indices);
     cout << result;
     return 0;
 }
 /*
-backtrack(&arr, i, &result, k{groups})
+backtrack(&arr, i, &result, indices)
      if i is on the last element of arr:
-          int maxsubarray
+          int maxsubarray = INT_MIN
           for all subarrays in arr (i.e for k times)
                sum = sum(subarray)
                if(sum > max):
@@ -91,7 +96,7 @@ backtrack(&arr, i, &result, k{groups})
           return
      for all swaps possible from i to the end of arr:
           swap(i,j,arr)
-          backtrack(arr, i+1, arr)
+          backtrack(arr, i+1, indices)
           swap(i,j,arr) // swap back
      return     
 */
