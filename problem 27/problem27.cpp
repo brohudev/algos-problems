@@ -58,8 +58,23 @@ Main Function:
 #include <algorithm>
 
 using namespace std;
+class Graph{
+    public:
+        Graph(int);
+        void addedge(int, int); // add edge v -> w in graph at the end of adj list
+        int countsatisfiablenode(); //main solver.
+    private:
+        void putmethodhere();
+
+};
 
 int main(){
-    
+    int n,m,v,w; cin >> n; cin >> m;
+    Graph g = Graph(n);
+    for(int i = 0; i < m-1; i++){ // input all the nodes
+        cin >> v; cin >> w;
+        g.addedge(v,w);
+    }
+    cout << g.countsatisfiablenode(); // fetch the answer.
     return 0;
 }

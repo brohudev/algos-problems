@@ -38,3 +38,21 @@ the new plan is to submit an alternate submission for p3 to salvage enough opint
 ---
 ---
 
+# Problem Set 12
+Assigned: 11/12/23 Sunday
+Due: 11/28/23 Tuesday
+---
+## Problem 25
+### Thursday 11/23
+#### 5 pm update:
+- I have 5 days to finish both problems. the goal for today is to finish up the implemenation of graphs and the algorithms for both problems. this way i can start hunting bugs starting tomorrow.
+#### 6pm update:
+- the pseudocode makes no sense. I'm going to whip up my own pseudo for this problem. 
+
+
+---
+## Problem 27
+### Thursday 11/23
+#### 6pm update:
+- Time to work on this pseudo while I take a break from p25
+- [ ] write up this graph class from p27 as its own standalone code for copy pasta use later. 
