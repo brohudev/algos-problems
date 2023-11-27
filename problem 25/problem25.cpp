@@ -83,3 +83,30 @@ Main Function:
     Call findMaxProfit with these lists
     Print the result
 */
+//chatgpt spat out the following pseudo code:
+// function getMaxProfit(startTime, endTime, profit):
+//     return findNonOverlappingJobs(0, startTime, endTime, profit, 0)
+
+// function findNonOverlappingJobs(currentIndex, startTime, endTime, profit, currentProfit):
+//     if currentIndex == length(startTime):
+//         return currentProfit
+
+//     // Skip the current job
+//     profitWithoutCurrentJob = findNonOverlappingJobs(currentIndex + 1, startTime, endTime, 
+                                                    // profit, currentProfit)
+
+//     // Include the current job if it doesn't overlap with previous jobs
+//     nextCompatibleIndex = findNextCompatibleIndex(currentIndex, startTime, endTime)
+//     profitWithCurrentJob = findNonOverlappingJobs(nextCompatibleIndex, startTime, endTime, 
+                                            //profit, currentProfit + profit[currentIndex])
+
+//     // Return the maximum of the two options
+//     return max(profitWithoutCurrentJob, profitWithCurrentJob)
+
+// function findNextCompatibleIndex(currentIndex, startTime, endTime):
+//     // Find the next job that doesn't overlap with the current job
+//     for i = currentIndex + 1 to length(startTime) - 1:
+//         if startTime[i] >= endTime[currentIndex]:
+//             return i
+
+//     return length(startTime)

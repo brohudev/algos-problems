@@ -56,3 +56,8 @@ Due: 11/28/23 Tuesday
 #### 6pm update:
 - Time to work on this pseudo while I take a break from p25
 - [ ] write up this graph class from p27 as its own standalone code for copy pasta use later. 
+### Saturday 11/25
+#### 6pm update
+- So i have notched it back down a little to be able to work with the problem in chunks. the goal for today is to implement the skeleton and make sure the structure around the main problem is working correctly. for 27 that means making sure the graph class is functional and without bugs and for p25 it means coming up with and writing shell code for a backtracking solution. 
+#### 730pm updwork on p25ate:
+- okkay so the methods and the stuff is filled in. ill work on making sure the input output and that stuff is working after dinner and then work on p25 instead of debugging the cyclic dependancy method (cuz it seems like its gonna need a coupel hours of work) 
