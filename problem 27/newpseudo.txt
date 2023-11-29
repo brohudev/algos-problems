@@ -1,0 +1,41 @@
+function detectCyclesAndRemoveUnsatisfiableNodes(graph):
+    n = number of nodes in the graph
+    visited = array of size n initialized to False
+    stack = empty stack
+    satisfiableNodes = 0
+
+    function hasCycle(node):
+        if visited[node] is True and node is in stack:
+            return True
+        if visited[node] is True:
+            return False
+
+        visited[node] = True
+        stack.push(node)
+
+        for neighbor in graph[node]:
+            if hasCycle(neighbor):
+                return True
+
+        stack.pop()
+        return False
+
+    for each node in range(n):
+        if not visited[node]:
+            if not hasCycle(node):
+                satisfiableNodes += 1
+
+    return satisfiableNodes
+
+# Input
+n = read integer from input
+m = read integer from input
+graph = initialize an empty array of size n, where each element is an empty list
+
+for i from 1 to m:
+    src, dst = read two integers from input
+    graph[src].append(dst)
+
+# Output
+result = detectCyclesAndRemoveUnsatisfiableNodes(graph)
+print(result)
